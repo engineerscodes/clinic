@@ -1,0 +1,16 @@
+{% extends 'patients/layout.html' %} {% block body %}
+
+<h1>Details</h1>
+<hr><br>
+<ul>
+  {% for i in details %}
+  <li>
+    <h4>Paitent {{ i.name }}</h4>
+    <label for="mobile">Name: {{ i.name }}</label><br>
+    <label for="mobile">Mobile: {{ i.mobile }}</label><br>
+    <br><hr><br>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock body %}

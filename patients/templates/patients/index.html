@@ -1,0 +1,12 @@
+{% extends 'patients/layout.html' %} {% block body %}
+<header>Fill the details</header>
+
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+    <div>
+        {{ form.as_ul }}
+        <button class="button" type="submit" value="">submit</button>
+    </div>
+</form>
+
+{% endblock body %}
