@@ -1,2 +1,3 @@
-pip install gunicorn
-pip install django-heroku
+gunicorn
+django-heroku
+Django==3.1
