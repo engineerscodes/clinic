@@ -2,17 +2,20 @@ from django.db import models
 
 
 class Details(models.Model):
-    mobile = models.CharField(max_length=50)
+    mobile = models.CharField(max_length=50,primary_key=True,)
     name = models.CharField(max_length=50)
-
+    is_checked =models.BooleanField(default=False)
+    verified_by=models.EmailField(blank=True)
     def __str__(self):
         return self.mobile
 
 
 class Report(models.Model):
-    patient = models.ForeignKey(Details, default=None,
-                                on_delete=models.CASCADE, related_name='info', primary_key=True)
+    patient = models.OneToOneField(Details, default=None,
+                                on_delete=models.CASCADE, related_name='info',to_field='mobile', primary_key=True)
     message = models.TextField(default=None)
+    doctor_name=models.CharField(max_length=50)
+    client_name=models.CharField(max_length=50)
 
     # def __str__(self):
     #     return self.patient
