@@ -8,5 +8,8 @@
         <button class="button" type="submit" value="">submit</button>
     </div>
 </form>
+  {% for message in messages %}
+                <p>{{message}}</p>
+  {% endfor %}
 
 {% endblock body %}

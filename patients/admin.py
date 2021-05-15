@@ -3,10 +3,10 @@ from .models import Details, Report
 
 
 class patientsinfoAdmin(admin.ModelAdmin):
-    list_filter = ('mobile','verified_by','name')
-    list_display = ('mobile', 'name','is_checked','verified_by')
+    list_filter = ('mobile','Form_date','name')
+    list_display = ('mobile', 'name','is_checked',)
     search_fields = ('mobile', 'name')
-    readonly_fields=('name','is_checked','verified_by')
+    readonly_fields=('name','is_checked','Form_date')
 
 class REPORT_ADMIN(admin.ModelAdmin):
     list_filter = ('patient', 'doctor_name')

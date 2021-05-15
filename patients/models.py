@@ -5,7 +5,7 @@ class Details(models.Model):
     mobile = models.CharField(max_length=50,primary_key=True,)
     name = models.CharField(max_length=50)
     is_checked =models.BooleanField(default=False)
-    verified_by=models.EmailField(blank=True)
+    Form_date=models.DateField(default='2001-04-12')
     def __str__(self):
         return self.mobile
 
