@@ -2,15 +2,18 @@
 
 <h1>Details</h1>
 <hr><br>
-<ul>
+<ol>
   {% for i in details %}
   <li>
     <h4>Paitent {{ i.name }}</h4>
-    <label for="mobile">Name: {{ i.name }}</label><br>
+    <label for="name">Name: {{ i.name }}</label><br>
     <label for="mobile">Mobile: {{ i.mobile }}</label><br>
-    <br><hr><br>
+    <br>
   </li>
+  <a href=""> send message </a>
+  <br><br><hr>
+  <a href=""></a>
   {% endfor %}
-</ul>
+</ol>
 
 {% endblock body %}

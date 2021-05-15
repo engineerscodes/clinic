@@ -1,0 +1,14 @@
+{% extends 'patients/layout.html' %} {% block body %}
+
+<h2>Add message:</h2>
+<form action="{% url 'book' flight.id %}" method="post">
+  {% csrf_token %}
+  <select name="message">
+    {% for i in details %}
+    <option value="{{ i.id }}">{{ i }}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" />
+</form>
+
+{% endblock body %}

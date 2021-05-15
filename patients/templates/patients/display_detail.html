@@ -1,0 +1,9 @@
+{% extends 'patients/layout.html' %} {% block body %}
+
+<h1>Hello, {{ patient.name }}</h1>
+<br><hr>
+<h2>Your report:</h2>
+<p>
+{{ patient.report }}
+</p>
+{% endblock body %}
