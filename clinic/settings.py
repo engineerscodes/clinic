@@ -14,6 +14,7 @@ import django_heroku
 import dj_database_url
 
 from pathlib import Path
+from .DETAIL import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -135,3 +136,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+# smtp2go
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.smtp2go.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT =  2525
+
+EMAIL_HOST_USER = EMAIL
+EMAIL_HOST_PASSWORD = PASS
+# Alternative PORTS: 8025, 587, 80

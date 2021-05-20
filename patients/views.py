@@ -11,9 +11,12 @@ from django.urls import reverse
 
 
 def report(request):
+    if request.user.is_authenticated ==False:
+        return redirect('/')
+
     if request.method == 'POST':
         form = Report_Form(data=request.POST, files=request.FILES)
-        if form.is_valid():
+        if form.is_valid() :
 
             new_form=form.save(commit=False)
             #print(request.POST['number'])

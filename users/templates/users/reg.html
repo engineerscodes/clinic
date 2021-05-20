@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="neo">
+        <div class="login">
+
+
+
+            <form class="forms" method="POST">
+                  {% csrf_token %}
+                <div class="inputsfileds">
+                    <div class="username">
+
+                        <div class="jsut">
+                            <input type="text" id="name" placeholder="username" name="names" autocomplete="off"
+                                required>
+                        </div>
+                    </div>
+                    <div class="email">
+
+                        <div class="jsut">
+                            <input type="email" id="email" placeholder="email" name="emails" autocomplete="off"
+                                required>
+                        </div>
+                    </div>
+
+                        <div class="jsut">
+                            <input type="password" id="pass" placeholder="password" name="password_cfn"
+                                autocomplete="off" required>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit">sign up</button>
+
+                </div>
+
+            </form>
+            <div class="fp">
+                <a href="#"> Forgot password</a> or <a href="/users/login/"> sign in </a>
+                 {% for message in messages %}
+                 <p>{{message}}</p>
+                 {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

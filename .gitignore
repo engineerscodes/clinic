@@ -45,3 +45,6 @@ __pycache__/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+
+/BITE_DANCE/BITE_DANCE/DETAIL.py
+
