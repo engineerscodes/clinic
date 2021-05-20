@@ -135,4 +135,4 @@ def AUTHUSERNAME(request, uidb64, token):
 
         return redirect('/users/login/')
 
-    return render(request, 'auth_failed.html', status=401)
+    return render(request, 'users/errorlogin.html', status=401)
