@@ -6,15 +6,22 @@ from patients.forms import Details_Form, NameForm, Report_Form
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Details,Report
+from DOCTORS.models import  DOCTORS
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
 
 def report(request):
-    if request.user.is_authenticated ==False:
+    if request.user.is_authenticated ==False :
         return redirect('/')
-
-    if request.method == 'POST':
+    try:
+       IS_doc=DOCTORS.objects.get(pk=request.user)
+    except Exception as e:
+        print("INVALID PERSON")
+        IS_doc=None
+    if IS_doc is None :
+        return redirect('/')
+    if request.method == 'POST' and IS_doc is not None :
         form = Report_Form(data=request.POST, files=request.FILES)
         if form.is_valid() :
 
