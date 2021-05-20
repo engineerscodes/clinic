@@ -9,7 +9,7 @@ SEX_CHOICES = (
 
 
 class Details(models.Model):
-    mobile = models.CharField(max_length=50, primary_key=True,)
+    mobile = models.CharField(max_length=10, primary_key=True,)
     name = models.CharField(max_length=50)
     sex = models.CharField(max_length=6, choices=SEX_CHOICES, default='male')
     age = models.PositiveIntegerField(default=18)
