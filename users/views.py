@@ -2,30 +2,34 @@ from django.contrib import auth
 from django.contrib.auth import authenticate, login, logout
 from django.http import request
 from django.http.response import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse
 
 
 def index(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('login'))
+        #return HttpResponseRedirect(reverse('login'))
+       return redirect('/')
     return render(request, 'users/user.html')
 
 
 def login_view(request):
-    if request.method == 'POST':
+    '''if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('index'))
+            #return HttpResponseRedirect(reverse('index'))
+            return redirect('/')
         else:
             return render(request, 'users/login.html', {
                 'message': "Invalid credentials"
             })
 
-    return render(request, 'users/login.html')
+    return render(request, 'users/login.html')'''
+    #return HttpResponse("HHHHHHHHHHHHHHHHHH")
+    return render(request, 'patients/login.html')
 
 
 def logout_view(request):
