@@ -6,7 +6,7 @@ class patientsinfoAdmin(admin.ModelAdmin):
     list_filter = ('mobile','Form_date','name')
     list_display = ('mobile', 'name','is_checked',)
     search_fields = ('mobile', 'name')
-    readonly_fields=('name','Form_date')
+    readonly_fields=('name','Form_date','is_checked')
 
 class REPORT_ADMIN(admin.ModelAdmin):
     list_filter = ('patient', 'doctor_name')

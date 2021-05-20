@@ -23,17 +23,31 @@ def report(request):
 
                 numObj=Details.objects.get(mobile=request.POST['number'])
                 if numObj.is_checked==True:
-                    messages.info(request, "!!The Record Was Updated by  !!")
-                    return redirect('/report/')
+                    try :
+                        doc=Report.objects.get(pk=numObj)
+                        #print(doc)
+                        messages.info(request, f"!!The Record Was Updated by {doc.doctor_name}  few seconds ago!!")
+                        return redirect('/report/')
+                    except Exception as e:
+                        messages.info(request, f"!!Record Submitted!!")
+                        numObj.is_checked = True
+                        numObj.save()
+                        new_form.patient = numObj
+                        new_form.doctor_name = request.user.username
+                        # request.user.email
+                        new_form.client_name = numObj.name
+                        new_form.save()
+                        return redirect('/report/')
+
                 else :
                     numObj.is_checked=True
                     numObj.save()
                     new_form.patient=numObj
                     new_form.doctor_name=request.user.username
-                    new_form.doctor_name="TOSHA"
+                    #request.user.email
                     new_form.client_name=numObj.name
                     new_form.save()
-
+                    messages.info(request, f"!!Record Submitted!!")
 
                     return HttpResponseRedirect(reverse('patients:report'))
             except Exception as e:
