@@ -9,10 +9,15 @@
     <option value="{{ i }}">{{ i }}</option>
     {% endfor %}
   </select>
+
   <div>
         {{ form.as_ul }}
         <button class="button" type="submit" >submit</button>
     </div>
 </form>
+
+  {% for message in messages %}
+                <p>{{message}}</p>
+  {% endfor %}
 
 {% endblock body %}

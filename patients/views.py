@@ -22,16 +22,20 @@ def report(request):
             try :
 
                 numObj=Details.objects.get(mobile=request.POST['number'])
-                numObj.is_checked=True
-                numObj.save()
-                new_form.patient=numObj
-                new_form.doctor_name=request.user.username
-                new_form.doctor_name="TOSHA"
-                new_form.client_name=numObj.name
-                new_form.save()
+                if numObj.is_checked==True:
+                    messages.info(request, "!!The Record Was Updated by  !!")
+                    return redirect('/report/')
+                else :
+                    numObj.is_checked=True
+                    numObj.save()
+                    new_form.patient=numObj
+                    new_form.doctor_name=request.user.username
+                    new_form.doctor_name="TOSHA"
+                    new_form.client_name=numObj.name
+                    new_form.save()
 
 
-                return HttpResponseRedirect(reverse('patients:report'))
+                    return HttpResponseRedirect(reverse('patients:report'))
             except Exception as e:
                 print(e)
 
@@ -39,7 +43,7 @@ def report(request):
         form = Report_Form()
 
     return render(request, 'patients/report.html', {
-        'details': Details.objects.all(),
+        'details': Details.objects.filter(is_checked=False),
         'form': form
     })
 
