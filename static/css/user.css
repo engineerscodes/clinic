@@ -75,9 +75,9 @@ body {
 
 .home {
     width: 100%;
-    height: 100vh;
+    height: 60vh;
     background-image:
-        url();
+        url(https://images.unsplash.com/photo-1612401104473-a79cb1da9351?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
     background-position: center top;
     background-size: cover;
 }
@@ -372,3 +372,14 @@ body {
     background-color: #111;
 }
 
+.stats{
+    height: 400px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-transform: uppercase;
+    background-color: #e3e3e3;
+    color: #c60021;
+}

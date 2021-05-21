@@ -17,10 +17,10 @@
               </div>
               <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
-                  <li><a href="#">REPORTS</a></li>
-                  <li><a href="#">STATS</a></li>
-                  <li><a href="#">ADMIN PAGE</a></li>
-                  <li><a href="#">LOGOUT</a></li>
+                  <li><a href="/report/">REPORTS</a></li>
+                  <li><a href="#datas">STATS</a></li>
+                  <li><a href="/admin/">ADMIN PAGE</a></li>
+                  <li><a href="/users/logout/">LOGOUT</a></li>
                 </ul>
               </div>
               <span class="navTrigger">
@@ -34,7 +34,20 @@
            <section class="home">
            </section>
 
-           <div style="height: 1000px"></div>
+           <div  class="stats" id="datas">
+             
+            <div>
+                 <h1>LOGGED IN AS {{user}}</h1>
+                 <h1>STATS</h1>
+                 <h1>TOTAL REPORTS : {{counts}}</h1>
+                  <h1>PENDING REPORTS : {{pen}}</h1>
+                  <h1>RECORD SUBMIITED BY YOU : {{rec}}</h1>
+            </div>
+
+               
+          </div>
+
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -53,7 +66,6 @@
       $(window).scroll(function () {
         if ($(document).scrollTop() > 50) {
           $('.nav').addClass('affix');
-          console.log("OK");
         } else {
           $('.nav').removeClass('affix');
         }

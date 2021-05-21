@@ -8,8 +8,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import  auth,User
 from django.contrib import messages
 from django.views import View
-import re
-
+from patients.models import Details,Report
 from .Token_Gen import Token_generator
 from django.core.mail import send_mail
 
@@ -46,9 +45,14 @@ class THREADEMAIL(threading.Thread):
 
 
 def index(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('users:login'))
-    return render(request, 'users/user.html')
+    if  request.user.is_authenticated ==False:
+        #return HttpResponseRedirect(reverse('users:login'))
+        return redirect('/users/login/')
+    totalrec=Details.objects.all().count()
+    totalpen=Report.objects.all().count()
+    userREC=Report.objects.filter(doctor_name=request.user.username).count()
+    return render(request, 'users/user.html',{'counts':totalrec,'pen':totalpen,'rec':userREC})
+
 
 
 def login_view(request):
@@ -59,6 +63,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse('index'))
+
         else:
             return render(request, 'users/login.html', {
                 'message': "Invalid credentials"
