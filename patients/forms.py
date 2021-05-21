@@ -10,13 +10,24 @@ class NameForm(forms.Form):
 class Details_Form(forms.ModelForm):
     class Meta:
         model = Details
-        fields = ('name', 'mobile',  'age', 'saturation_level', 'heart_rate', 'sex',)
+        fields = ('name', 'mobile', 'age', 'saturation_level', 'heart_rate', 'sex',)
+
+    def __init__(self, *args, **kwargs):
+        super(Details_Form, self).__init__(*args, **kwargs)
+        self.fields['mobile'].widget.attrs['placeholder'] = '6373158971'
+
+        self.fields['name'].widget.attrs['placeholder']="JAMES COOK"
+        self.fields['age'].widget.attrs['placeholder'] = "27"
+        self.fields['saturation_level'].widget.attrs['placeholder'] = "79"
+        self.fields['heart_rate'].widget.attrs['placeholder'] = "90"
 
     def clean(self):
         super(Details_Form, self).clean()
         name = self.cleaned_data.get('name')
         mobile = self.cleaned_data.get('mobile')
         age = self.cleaned_data.get('age')
+
+
 
         if len(name) < 5:
             self._errors['name'] = self.error_class([
