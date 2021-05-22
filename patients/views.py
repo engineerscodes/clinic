@@ -121,5 +121,13 @@ def view(request):
 
 
 def display(request, number):
-    return render(request, 'patients/display_detail.html',
-                  {'patient': Details.objects.get(mobile=number)})
+    try :
+      number=  Details.objects.get(mobile=number)
+    except Exception as e:
+        number=None
+    if number is not None :
+        return render(request, 'patients/display_detail.html',
+                      {'patient': number})
+    else :
+        messages.info(request,'!!!RECORD DOESNOT EXIST!!!')
+        return render(request,'patients/display_detail.html',{'patient':None})
