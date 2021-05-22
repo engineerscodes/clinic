@@ -4,11 +4,13 @@ import re
 
 
 class NameForm(forms.Form):
-    number = forms.CharField(label='Number', max_length=10,min_length=10)
+    number = forms.CharField(
+        label='Number', max_length=10, min_length=10)
 
     def __init__(self, *args, **kwargs):
         super(NameForm, self).__init__(*args, **kwargs)
-        self.fields['number'].widget.attrs['placeholder'] = '6373158971'
+        self.fields['number'].widget.attrs['placeholder'] = 'Enter your mobile number'
+
     def clean(self):
         super(NameForm, self).clean()
         number = self.cleaned_data.get('number')
@@ -25,26 +27,24 @@ class NameForm(forms.Form):
 
 
 class Details_Form(forms.ModelForm):
+
     class Meta:
         model = Details
-        fields = ('name', 'mobile', 'age', 'saturation_level', 'heart_rate', 'sex',)
+        fields = ('name', 'mobile', 'age', 'saturation_level', 'heart_rate', 'sex', 'symptoms')
 
     def __init__(self, *args, **kwargs):
         super(Details_Form, self).__init__(*args, **kwargs)
-        self.fields['mobile'].widget.attrs['placeholder'] = '6373158971'
+        self.fields['mobile'].widget.attrs['placeholder'] = 'Enter your mobile number'
+        self.fields['name'].widget.attrs['placeholder'] = "Enter your name"
+        self.fields['symptoms'].widget.attrs['placeholder'] = "Enter your symptoms"
 
-        self.fields['name'].widget.attrs['placeholder']="JAMES COOK"
-        self.fields['age'].widget.attrs['placeholder'] = "27"
-        self.fields['saturation_level'].widget.attrs['placeholder'] = "79"
-        self.fields['heart_rate'].widget.attrs['placeholder'] = "90"
+        # self.fields['name'].widget.attrs['class'] = "app-form-control"
 
     def clean(self):
         super(Details_Form, self).clean()
         name = self.cleaned_data.get('name')
         mobile = self.cleaned_data.get('mobile')
         age = self.cleaned_data.get('age')
-
-
 
         if len(name) < 5:
             self._errors['name'] = self.error_class([

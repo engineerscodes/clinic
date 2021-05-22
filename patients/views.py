@@ -122,33 +122,14 @@ def view(request):
     return render(request, 'patients/view.html', {'form': form})
 
 
-'''def display(request, number):
-<<<<<<< HEAD
-    try :
-      number=  Details.objects.get(mobile=number)
-    except Exception as e:
-        number=None
-    if number is not None :
-        return render(request, 'patients/display_detail.html',
-                      {'patient': number})
-    else :
-        messages.info(request,'!!!RECORD DOESNOT EXIST!!!')
-        return render(request,'patients/display_detail.html',{'patient':None})
-=======
-    return render(request, 'patients/display_detail.html', {
-        'patient': Details.objects.get(mobile=number),
-        'message': Report.objects.get(pk=number)
-    })
->>>>>>> db654b12537501bc478d79151ebdcd43d19b967f '''
-
 def display(request, number):
     try:
-        rec=Details.objects.get(mobile=number)
+        rec = Details.objects.get(mobile=number)
         report = Report.objects.get(pk=number)
     except Exception as e:
-        rec=None
-        report=None
-        messages.info(request,"CHECK YOUR NUMBER OR RECORD DOESNOT EXIST")
+        rec = None
+        report = None
+        messages.info(request, "No records found")
 
     return render(request, 'patients/display_detail.html', {
         'patient': rec,

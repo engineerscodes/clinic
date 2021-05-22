@@ -16,6 +16,7 @@ class Details(models.Model):
     saturation_level = models.FloatField(default=80)
     heart_rate = models.FloatField(default=130)
     is_checked = models.BooleanField(default=False)
+    symptoms = models.TextField(max_length=150, default=None)
     Form_date = models.DateField(default='2001-04-12')
     # verfiyed_by=models.EmailField()
 
