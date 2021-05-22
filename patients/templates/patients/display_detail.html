@@ -4,6 +4,44 @@
 <br><hr>
 <h2>Your report:</h2>
 <p>
-{{ patient.report }}
+Submitted detail:
+    <ul>
+        <li>
+        <label>Name: </label>
+        {{ patient.name }}
+        </li>
+        
+        <li>
+        <label>Age: </label> 
+        {{ patient.age }}
+        </li>
+
+        <li>
+        <label>Sex: </label> 
+        {{ patient.sex }}
+        </li>
+        
+        <li>
+        <label>Heart rate: </label>
+        {{ patient.heart_rate }}
+        </li>
+
+        <li>
+        <label>Saturation level: </label>
+        {{ patient.saturation_level }}
+        </li>
+
+        <li>
+        <label>Mobile: </label>
+        {{ patient.mobile }}
+        </li>
+        <br>
+
+        <h3>Recived message:</h3>
+        <p>{{ message.message }}</p>
+
+
+    </ul>
+
 </p>
 {% endblock body %}
