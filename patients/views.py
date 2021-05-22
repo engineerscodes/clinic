@@ -67,9 +67,13 @@ def report(request):
 
     else:
         form = Report_Form()
-
+        #  Details.objects.all()
+    #print(Report.objects.all().values_list('patient'))
+    available_reports=Report.objects.all().values_list('patient')
+    pending_reports=Details.objects.exclude(pk__in=available_reports)
     return render(request, 'patients/report.html', {
-        'details': Details.objects.filter(is_checked=False),
+        #'details': Details.objects.filter(is_checked=False),
+        'details':pending_reports,
         'form': form
     })
 
