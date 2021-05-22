@@ -1,19 +1,57 @@
 {% extends 'patients/layout.html' %} {% block body %}
 
+{% if patient != None and message != None %}
 
-    <h1>Hello, {{ patient.name }}</h1>
-    <br><hr>
-    <h2>Your report:</h2>
-    <p>
-    {{ patient.report }}
-    </p>
+<h1>Hello, {{ patient.name }}</h1>
+<br><hr>
+<h2>Your report:</h2>
+<p>
+Submitted detail:
+    <ul>
+        <li>
+        <label>Name: </label>
+        {{ patient.name }}
+        </li>
+        
+        <li>
+        <label>Age: </label> 
+        {{ patient.age }}
+        </li>
+
+        <li>
+        <label>Sex: </label> 
+        {{ patient.sex }}
+        </li>
+        
+        <li>
+        <label>Heart rate: </label>
+        {{ patient.heart_rate }}
+        </li>
+
+        <li>
+        <label>Saturation level: </label>
+        {{ patient.saturation_level }}
+        </li>
+
+        <li>
+        <label>Mobile: </label>
+        {{ patient.mobile }}
+        </li>
+        <br>
+
+        <h3>Recived message:</h3>
+        <p>{{ message.message }}</p>
 
 
+    </ul>
 
-    {% for message in messages %}
-          <p>{{message}}</p>
-    {% endfor %}
+</p>
+{% else %}
+  {% for m in messages %}
+                <p>{{m}}</p>
+  {% endfor %}
+{% endif %}
 
 
+{% endblock body %}
 
- {% endblock body %}

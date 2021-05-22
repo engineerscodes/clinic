@@ -4,7 +4,24 @@ import re
 
 
 class NameForm(forms.Form):
-    number = forms.CharField(label='Number', max_length=100)
+    number = forms.CharField(label='Number', max_length=10,min_length=10)
+
+    def __init__(self, *args, **kwargs):
+        super(NameForm, self).__init__(*args, **kwargs)
+        self.fields['number'].widget.attrs['placeholder'] = '6373158971'
+    def clean(self):
+        super(NameForm, self).clean()
+        number = self.cleaned_data.get('number')
+
+        if len(number) < 10:
+            self._errors['name'] = self.error_class([
+                'Name should not be less than 10 characters'])
+        if len(number) > 10:
+            self._errors['name'] = self.error_class([
+                'Name should not be less than 10 characters'])
+        if not str(number).isdecimal():
+            self._errors['mobile'] = self.error_class([
+                'Enter only numbers'])
 
 
 class Details_Form(forms.ModelForm):

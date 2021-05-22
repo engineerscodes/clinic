@@ -68,12 +68,12 @@ def report(request):
     else:
         form = Report_Form()
         #  Details.objects.all()
-    #print(Report.objects.all().values_list('patient'))
-    available_reports=Report.objects.all().values_list('patient')
-    pending_reports=Details.objects.exclude(pk__in=available_reports)
+    # print(Report.objects.all().values_list('patient'))
+    available_reports = Report.objects.all().values_list('patient')
+    pending_reports = Details.objects.exclude(pk__in=available_reports)
     return render(request, 'patients/report.html', {
-        #'details': Details.objects.filter(is_checked=False),
-        'details':pending_reports,
+        # 'details': Details.objects.filter(is_checked=False),
+        'details': pending_reports,
         'form': form
     })
 
@@ -113,14 +113,17 @@ def view(request):
             number = form.cleaned_data['number']
             return HttpResponseRedirect(reverse("patients:display", args=((number,))))
         else:
-            raise Http404
+
+            messages.info(request, "!!!IN VALID NUMBER!!!")
+            return redirect("/view/")
     else:
         form = NameForm()
 
     return render(request, 'patients/view.html', {'form': form})
 
 
-def display(request, number):
+'''def display(request, number):
+<<<<<<< HEAD
     try :
       number=  Details.objects.get(mobile=number)
     except Exception as e:
@@ -131,3 +134,23 @@ def display(request, number):
     else :
         messages.info(request,'!!!RECORD DOESNOT EXIST!!!')
         return render(request,'patients/display_detail.html',{'patient':None})
+=======
+    return render(request, 'patients/display_detail.html', {
+        'patient': Details.objects.get(mobile=number),
+        'message': Report.objects.get(pk=number)
+    })
+>>>>>>> db654b12537501bc478d79151ebdcd43d19b967f '''
+
+def display(request, number):
+    try:
+        rec=Details.objects.get(mobile=number)
+        report = Report.objects.get(pk=number)
+    except Exception as e:
+        rec=None
+        report=None
+        messages.info(request,"CHECK YOUR NUMBER OR RECORD DOESNOT EXIST")
+
+    return render(request, 'patients/display_detail.html', {
+        'patient': rec,
+        'message': report
+    })
