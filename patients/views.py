@@ -9,7 +9,10 @@ from .models import Details, Report
 from DOCTORS.models import DOCTORS
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
+from .serializers import DetailsSerializer
 
 def report(request):
     if request.user.is_authenticated == False:
@@ -98,7 +101,14 @@ def index(request):
 
 
 def details(request):
-    if not request.user.is_authenticated:
+    try:
+        IS_doc = DOCTORS.objects.get(pk=request.user)
+    except Exception as e:
+        print("INVALID PERSON")
+        IS_doc = None
+    if IS_doc is None:
+        return redirect('/')
+    if not request.user.is_authenticated and IS_doc is not None:
         return HttpResponseRedirect(reverse('login'))
 
     return render(request, 'patients/details.html', {
@@ -135,3 +145,27 @@ def display(request, number):
         'patient': rec,
         'message': report
     })
+
+
+@api_view(['GET'])
+def api_info(request):
+    if request.method == 'GET':
+        try:
+            IS_doc = DOCTORS.objects.get(pk=request.user)
+        except Exception as e:
+            print("INVALID PERSON")
+            IS_doc = None
+        if IS_doc is None:
+            return redirect('/')
+        if request.is_ajax() and request.user.is_authenticated and IS_doc is not None:
+            try:
+                req_number = request.GET.get('number')
+            except:
+                return Response("EXCEPTION HAPPENDED", status=status.HTTP_400_BAD_REQUEST)
+
+            req_rec=Details.objects.get(pk=req_number)
+            req_rec_serial=DetailsSerializer(req_rec,many=False)
+
+            return Response({"data": req_rec_serial.data})
+        else:
+            return Response("PLZ AUTHENTICATE AND CALL MUST BE AJAX", status=status.HTTP_400_BAD_REQUEST)

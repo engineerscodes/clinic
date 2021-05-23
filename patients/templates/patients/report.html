@@ -5,13 +5,13 @@
     <h1>Enter Message</h1>
     <hr />
     {% csrf_token %}
-    <select name="number" required>
+    <select name="number" required id="submit_number">
       <option value="">None</option>
       {% for i in details %}
       <option value="{{ i }}">{{ i }}</option>
       {% endfor %}
     </select>
-
+    <div id="dis_req"></div>
     <div>
       {{ form.as_p }}
       <div class="app-form-group buttons">
@@ -23,5 +23,50 @@
 <div class="message">
   {% for message in messages %}
   <p>{{message}}</p>
+  {% endfor %}
 </div>
-{% endfor %} {% endblock body %}
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+  let req_number = document.getElementById("submit_number");
+  req_number.addEventListener('change', () => {
+
+    if (req_number.value != "")
+      //console.log(req_number.value)
+      $.ajax({
+        type: "GET",
+        url: "/getinfo/",
+        data: {
+          number: req_number.value,
+        },
+        success: function (respone) {
+          //console.log(respone)
+          let responeObject = respone.data;
+
+          resp_info = `
+                     <ul style="list-style-type:none; padding: 0;">
+                      <li>
+                        <h2>Patient ${responeObject.name }</h2>
+                        <label for="name">Name: ${responeObject.name }</label><br />
+                        <label for="mobile">Mobile: ${ responeObject.mobile }</label><br />
+                        <label for="name">Sex: ${ responeObject.sex }</label><br />
+                        <label for="name">Age: ${responeObject.age }</label><br />
+                        <label for="name">Saturation level: ${ responeObject.saturation_level }</label><br />
+                        <label for="name">Heart rate: ${ responeObject.heart_rate }</label><br />
+                        <label for="name">Symptoms: ${ responeObject.symptoms }</label><br />
+                        <br>
+                        <hr>
+                      </li>
+                      <ul>
+                      `
+
+          document.getElementById("dis_req").innerHTML = resp_info;
+        },
+      });
+
+  })
+</script>
+
+{% endblock body %}

@@ -15,7 +15,7 @@ import django_heroku
 import dj_database_url
 
 from pathlib import Path
-# from .CRED import *
+from .CRED import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'patients',
     'users',
-    'DOCTORS'
+    'DOCTORS',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -149,6 +150,6 @@ EMAIL_HOST = 'mail.smtp2go.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 2525
 
-# EMAIL_HOST_USER = EMAIL
-# EMAIL_HOST_PASSWORD = PASS
+EMAIL_HOST_USER = EMAIL
+EMAIL_HOST_PASSWORD = PASS
 # Alternative PORTS: 8025, 587, 80
