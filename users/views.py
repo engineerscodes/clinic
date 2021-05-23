@@ -49,7 +49,7 @@ def index(request):
         #return HttpResponseRedirect(reverse('users:login'))
         return redirect('/users/login/')
     totalrec=Details.objects.all().count()
-    totalpen=Report.objects.all().count()
+    totalpen=totalrec-Report.objects.all().count()
     userREC=Report.objects.filter(doctor_name=request.user.username).count()
     return render(request, 'users/user.html',{'counts':totalrec,'pen':totalpen,'rec':userREC})
 
