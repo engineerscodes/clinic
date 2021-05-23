@@ -1,23 +1,27 @@
 {% extends 'patients/layout.html' %} {% block body %}
 
-<h2>Add message:</h2>
-<form  method="post">
-  {% csrf_token %}
-  <select name="number" required>
-    <option value="">None</option>
-    {% for i in details %}
-    <option value="{{ i }}">{{ i }}</option>
-    {% endfor %}
-  </select>
+<div class="wrapper">
+  <form method="post">
+    <h1>Enter Message</h1>
+    <hr />
+    {% csrf_token %}
+    <select name="number" required>
+      <option value="">None</option>
+      {% for i in details %}
+      <option value="{{ i }}">{{ i }}</option>
+      {% endfor %}
+    </select>
 
-  <div>
-        {{ form.as_ul }}
-        <button class="button" type="submit" >submit</button>
+    <div>
+      {{ form.as_p }}
+      <div class="app-form-group buttons">
+        <button type="submit" class="app-form-button">Submit</button>
+      </div>
     </div>
-</form>
-
+  </form>
+</div>
+<div class="message">
   {% for message in messages %}
-                <p>{{message}}</p>
-  {% endfor %}
-
-{% endblock body %}
+  <p>{{message}}</p>
+</div>
+{% endfor %} {% endblock body %}

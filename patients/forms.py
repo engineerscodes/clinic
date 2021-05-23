@@ -38,8 +38,6 @@ class Details_Form(forms.ModelForm):
         self.fields['name'].widget.attrs['placeholder'] = "Enter your name"
         self.fields['symptoms'].widget.attrs['placeholder'] = "Enter your symptoms"
 
-        # self.fields['name'].widget.attrs['class'] = "app-form-control"
-
     def clean(self):
         super(Details_Form, self).clean()
         name = self.cleaned_data.get('name')
@@ -73,3 +71,7 @@ class Report_Form(forms.ModelForm):
     class Meta:
         model = Report
         fields = ('message',)
+
+    def __init__(self, *args, **kwargs):
+        super(Report_Form, self).__init__(*args, **kwargs)
+        self.fields['message'].widget.attrs['placeholder'] = 'Enter message'

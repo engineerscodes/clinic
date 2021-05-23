@@ -1,19 +1,23 @@
 {% extends 'patients/layout.html' %} {% block body %}
-
-<h1>Details</h1>
-<hr><br>
-<ol>
-  {% for i in details %}
-  <li>
-    <h4>Paitent {{ i.name }}</h4>
-    <label for="name">Name: {{ i.name }}</label><br>
-    <label for="mobile">Mobile: {{ i.mobile }}</label><br>
-    <br>
-  </li>
-  <a href=""> send message </a>
-  <br><br><hr>
-  <a href=""></a>
-  {% endfor %}
-</ol>
-
+<div class="wrapper">
+  <h1>Patient details</h1>
+  <hr />
+  <p>
+    <ol>
+      {% for i in details %}
+      <li>
+        <h2>Patient {{ i.name }}</h2>
+        <label for="name">Name: {{ i.name }}</label><br />
+        <label for="mobile">Mobile: {{ i.mobile }}</label><br />
+        <label for="name">Sex: {{ i.sex }}</label><br />
+        <label for="name">Age: {{ i.age }}</label><br />
+        <label for="name">Saturation level: {{ i.saturation_level }}</label><br />
+        <label for="name">Heart rate: {{ i.heart_rate }}</label><br />
+        <label for="name">Symptoms: {{ i.symptoms }}</label><br />
+        <br><hr>
+      </li>
+      {% endfor %}
+    </ol>
+  </p>
+</div>
 {% endblock body %}
