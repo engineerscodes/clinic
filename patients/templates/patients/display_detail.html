@@ -1,7 +1,7 @@
 {% extends 'patients/layout.html' %} {% block body %}
 
 {% if patient != None and message != None %}
-
+<div class="wrapper">
 <h1>Hello, {{ patient.name }}</h1>
 <br><hr>
 <h2>Your report:</h2>
@@ -41,17 +41,15 @@ Submitted detail:
 
         <h3>Recived message:</h3>
         <p>{{ message.message }}</p>
-
-
     </ul>
-
 </p>
+</div>
+
 {% else %}
   {% for m in messages %}
-                <p>{{m}}</p>
+                <p class="message">{{m}}</p>
   {% endfor %}
 {% endif %}
-
 
 {% endblock body %}
 

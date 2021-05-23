@@ -1,15 +1,14 @@
 {% extends 'patients/layout.html' %} {% block body %}
-<header>Fill the details</header>
-
 <form method="post" enctype="multipart/form-data">
-{% csrf_token %}
-    <div>
-        {{ form.as_p }}
-        <button class="button" type="submit" value="">submit</button>
+  {% csrf_token %}
+  <div class="screen-body-item">
+    <div class="app-form app-form-group">
+      {{ form.as_p }}
+      <div class="app-form-group buttons">
+        <button class="app-form-button">Submit</button>
+      </div>
     </div>
+  </div>
 </form>
-  {% for message in messages %}
-                <p>{{message}}</p>
-  {% endfor %}
 
 {% endblock body %}

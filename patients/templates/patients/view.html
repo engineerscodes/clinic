@@ -1,13 +1,18 @@
 {% extends 'patients/layout.html' %} {% block body %}
-<h2>View Details:</h2>
-{% comment %} <form action="/number/" method="post"> {% endcomment %}
-<form method="post">
-  {% csrf_token %}
 
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+<div class="wrapper">
+  <form method="post">
+    <h1>Enter your number:</h1>
+    <div>
+      {% csrf_token %} {{ form.as_p }}
+      <div class="app-form-group buttons">
+        <button type="submit" class="app-form-button">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="message">
   {% for m in messages %}
-                <p>{{m}}</p>
-  {% endfor %}
-{% endblock body %}
+  <p>{{m}}</p>
+</div>
+{% endfor %} {% endblock body %}
