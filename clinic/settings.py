@@ -15,7 +15,7 @@ import django_heroku
 import dj_database_url
 
 from pathlib import Path
-from .CRED import *
+# from .CRED import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z7fiei8q1!#mmgd=5*@y0di0w0tmwh3%kj#&lu3a-34xz2ppa@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -150,6 +150,6 @@ EMAIL_HOST = 'mail.smtp2go.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 2525
 
-EMAIL_HOST_USER = EMAIL
-EMAIL_HOST_PASSWORD = PASS
+# EMAIL_HOST_USER = EMAIL
+# EMAIL_HOST_PASSWORD = PASS
 # Alternative PORTS: 8025, 587, 80

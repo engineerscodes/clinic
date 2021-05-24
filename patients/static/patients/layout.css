@@ -1,9 +1,31 @@
 *,
 *:before,
 *:after {
+  padding: 0px;
+  margin: 0px;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.header-wrapper {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  margin: 0 auto;
+}
+header {
+  width: 100%;
+  background: #03272e;
+  padding: 20px 0;
+  color: cyan;
+}
+nav a {
+  font-size: larger;
+  color: cyan;
+  text-decoration: none;
+  padding: 7px 25px;
+  display: inline-block;
 }
 
 body {
@@ -165,7 +187,6 @@ form textarea,
   padding: 10px 0;
   background: none;
   border: none;
-  border-bottom: 1px solid #666;
   color: #ddd;
   font-size: 14px;
   text-transform: uppercase;

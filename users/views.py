@@ -4,26 +4,20 @@ from django.http import request
 from django.http.response import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
-from django.shortcuts import render,redirect
-from django.contrib.auth.models import  auth,User
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import auth, User
 from django.contrib import messages
 from django.views import View
-from patients.models import Details,Report
+from patients.models import Details, Report
 from .Token_Gen import Token_generator
 from django.core.mail import send_mail
-
-from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
-
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.http import HttpResponse
-
-from django.template.loader import  render_to_string
-
-from django.utils.encoding import  force_text,force_bytes,  DjangoUnicodeDecodeError
-
+from django.template.loader import render_to_string
+from django.utils.encoding import force_text, force_bytes,  DjangoUnicodeDecodeError
 from django.contrib.sites.shortcuts import get_current_site
-
-
 import threading
+from django.core.exceptions import ValidationError
 
 
 class THREADEMAIL(threading.Thread):
@@ -33,32 +27,36 @@ class THREADEMAIL(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-            send_mail(
-                'THANKS FOR REG',
-                self.message,
-                'naveennoob95@gmail.com',
-                [self.email],
-                fail_silently=False,
+        send_mail(
+            'THANKS FOR REG',
+            self.message,
+            'naveennoob95@gmail.com',
+            [self.email],
+            fail_silently=False,
 
-            )
-
+        )
 
 
 def index(request):
-    if  request.user.is_authenticated ==False:
-        #return HttpResponseRedirect(reverse('users:login'))
+    if request.user.is_authenticated == False:
+        # return HttpResponseRedirect(reverse('users:login'))
         return redirect('/users/login/')
-    totalrec=Details.objects.all().count()
-    totalpen=totalrec-Report.objects.all().count()
-    userREC=Report.objects.filter(doctor_name=request.user.username).count()
-    return render(request, 'users/user.html',{'counts':totalrec,'pen':totalpen,'rec':userREC})
-
+    totalrec = Details.objects.all().count()
+    totalpen = totalrec-Report.objects.all().count()
+    userREC = Report.objects.filter(doctor_name=request.user.username).count()
+    return render(request, 'users/user.html',
+                  {'counts': totalrec, 'pen': totalpen, 'rec': userREC})
 
 
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+
+        if len(password) < 8:
+            messages.info(request, 'Password should be minimum 8 characters')
+            return redirect('/users/login/')
+
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -87,6 +85,9 @@ def reg(request):
         userName = request.POST['names']
         password = request.POST['password_cfn']
         email = request.POST['emails']
+        if len(password) < 8:
+            messages.info(request, 'Password should be minimum 8 characters')
+            return redirect('/users/reg/')
 
         if User.objects.filter(username=userName).exists():
             messages.info(request, " UserName is not Available")
@@ -95,7 +96,7 @@ def reg(request):
             messages.info(request, " MAIL IS ALREADY REG")
             return redirect('/users/reg/')
 
-        if  User.objects.filter(username=userName).exists() == False:
+        if User.objects.filter(username=userName).exists() == False:
             user = User.objects.create_user(username=userName, password=password, email=email)
             user.is_active = False
             user.save()
