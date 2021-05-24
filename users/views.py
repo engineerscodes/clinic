@@ -55,7 +55,9 @@ def login_view(request):
 
         if len(password) < 8:
             messages.info(request, 'Password should be minimum 8 characters')
-            return redirect('/users/login/')
+            return render(request, 'users/login.html', {
+                'message': "Password must min 8 characters"
+            })
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
