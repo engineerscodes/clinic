@@ -1,3 +1,3 @@
 
-EMAIL ="drvijaymd@healsalem.com"
-PASS="athish-e1c6"
+EMAIL ="no-reply@healsalem"
+PASS="bmVjZ3Zxa3puNjgw"
