@@ -18,12 +18,13 @@
 	}
 
 	.button-nav {
-		font-weight: 100;
-		height: 40px;
-		width: 200px;
+		border: 1px black;
+		font-weight: bold;
+		height: 50px;
+		width: 220px;
 		border-radius: 5px;
-		font-size: 1.1em;
-		letter-spacing: 0.2em;
+		font-size: 25px;
+		letter-spacing: 0.1em;
 		position: absolute;
 		background-color: black;
 		color: white
@@ -32,33 +33,30 @@
 	#b1 {
 		z-index: 10;
 		top: 70%;
-		left: 35%;
+		left: 20vw;
 	}
 
 	#b2 {
 		top: 70%;
-		left: 55%;
+		right: 20vw;
 		z-index: 20;
-		width: 200px;
 	}
 
 	@media only screen and (max-width: 1080px) {
 
 		#b2 {
 			top: 80%;
-			left: 35%;
-
-			font-size: 16px;
-			padding-top: 5px;
-			padding-bottom: 5px;
+			font-size: 20px;
+			width: 20vw;
+			left: 30vm;
 			height: 50px;
 		}
 
 		#b1 {
+			top: 80%;
+			font-size: 20px;
+			width: 20vw;
 			height: 50px;
-			font-size: 32px;
-			padding-top: 5px;
-			padding-bottom: 5px;
 		}
 
 	}
@@ -90,6 +88,19 @@
 							are a small group of like minded doctors and professors of medical college, stepped in to
 							treat and help the covid people in and around Salem free of cost </p>
 					</div>
+
+				<div class="container container-one">
+					<button id="b1" class="button-nav">
+						<a href="/form" style="text-decoration:none">Fill Form</a>
+						<div class="fill-one"></div>
+					</button>
+
+					</div><div>
+					<button id="b2" class="button-nav">
+						<a href="/view" style="text-decoration:none">Check Result</a>
+						<div class="fill-one"></div>
+					</button>
+				</div>
 				</div>
 				<div class="fs-slide"
 					style="background-image: url(https://www.oncozine.com/wp-content/uploads/2018/11/Fotolia_125743946_Subscription_Monthly_M.jpg);">
@@ -122,17 +133,6 @@
 				</div>
 			</div>
 
-
-			<div class="container container-one">
-				<button id="b1" class="button-nav">
-					<a href="/form" style="text-decoration:none">Fill Form</a>
-					<div class="fill-one"></div>
-				</button>
-				<button id="b2" class="button-nav">
-					<a href="/view" style="text-decoration:none">Check Result</a>
-					<div class="fill-one"></div>
-				</button>
-			</div>
 
 
 			<!-- Quick Navigation -->
