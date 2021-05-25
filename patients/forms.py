@@ -10,6 +10,7 @@ class NameForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(NameForm, self).__init__(*args, **kwargs)
         self.fields['number'].widget.attrs['placeholder'] = 'Enter your mobile number'
+        self.fields['number'].label = ""
 
     def clean(self):
         super(NameForm, self).clean()

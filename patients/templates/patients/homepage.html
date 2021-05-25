@@ -11,6 +11,34 @@
 
   
 </head>
+<style>
+a{
+	color: #fff
+}
+.button-nav {
+	font-weight: 100;
+	height: 40px;
+	width: 200px;
+	border-radius: 5px;
+	font-size: 1.1em;
+	letter-spacing: 0.2em;
+	position: absolute;
+	background-color: black;
+	color: white
+}
+#b1{
+	z-index: 10;
+	top: 70%;
+	left: 35%;
+}
+#b2{
+	top: 70%;
+	left: 55%;
+	z-index: 20;
+	width: 200px;
+}
+</style>
+
 
 <body>
   <div class="container">
@@ -47,6 +75,19 @@
 				</div>
 			</div>
 		</div>
+
+
+		<div class="container container-one">
+			<button  id="b1" class="button-nav">
+			<a href="/form" style="text-decoration:none">Fill Form</a>
+				<div class="fill-one"></div>
+			</button>
+			<button id="b2" class="button-nav">
+			<a href="/view" style="text-decoration:none">Check Result</a>
+				<div class="fill-one"></div>
+			</button>
+		</div>
+
 
 		<!-- Quick Navigation -->
 		<div class="fs-quick-nav">

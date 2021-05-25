@@ -31,6 +31,8 @@ nav a {
 body {
   background: linear-gradient(to right, #10847e 0%, #5f9b87 100%);
   font-size: 12px;
+  background-image: url("https://www.mdlinx.com/physiciansense/wp-content/uploads/2019/12/female-doctor-pay-gap.jpg");
+  background-size: cover;
 }
 
 body,
@@ -43,7 +45,6 @@ input {
 
 h1,
 h2 {
-  text-decoration: underline;
   line-height: 2.7rem;
   color: cyan;
 }
