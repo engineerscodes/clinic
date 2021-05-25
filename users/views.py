@@ -30,7 +30,7 @@ class THREADEMAIL(threading.Thread):
         send_mail(
             'THANKS FOR REG',
             self.message,
-            'no-reply@healsalem',
+            'naveennoob95@gmail.com',
             [self.email],
             fail_silently=False,
 

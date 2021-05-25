@@ -91,7 +91,7 @@ def index(request):
 
             new_form.save()
             messages.info(request, "FORM SUBMITTED ")
-            return redirect('/')
+            return redirect('/form/')
         else:
             return render(request, 'patients/index.html', {'form': form})
     else:
@@ -169,3 +169,9 @@ def api_info(request):
             return Response({"data": req_rec_serial.data})
         else:
             return Response("PLZ AUTHENTICATE AND CALL MUST BE AJAX", status=status.HTTP_400_BAD_REQUEST)
+
+
+def HomePage(request):
+
+    if request.method =='GET':
+        return render(request,'patients/homepage.html')
