@@ -1,3 +1,3 @@
 
-EMAIL ="athish.19bci7075@vitap.ac.in"
-PASS="NakjKkqpvmu9"
+EMAIL ="drvijaymd@healsalem.com"
+PASS="athish-e1c6"
