@@ -190,6 +190,7 @@ form textarea,
   border: none;
   color: #ddd;
   font-size: 14px;
+  border-bottom: 1px solid #666;
   text-transform: uppercase;
   outline: none;
   transition: border-color 0.2s;
