@@ -79,6 +79,10 @@ h2 {
   z-index: -1;
 }
 
+textarea{
+    resize: none;
+}
+
 .screen-header {
   display: flex;
   align-items: center;
